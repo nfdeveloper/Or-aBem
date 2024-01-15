@@ -1,13 +1,18 @@
 package br.com.nfdeveloper.orcabemapi.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +26,9 @@ public class Categoria implements Serializable{
 	private String titulo;
 	private String descricao;
 	private Date data_criacao;
+	
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+	private List<Despesa> despesas = new ArrayList<>();
 	/*
 	 * TODO
 	 * private Usuario usuario;
@@ -69,6 +77,14 @@ public class Categoria implements Serializable{
 
 	public void setData_criacao(Date data_criacao) {
 		this.data_criacao = data_criacao;
+	}
+	
+	public List<Despesa> getDespesas() {
+		return despesas;
+	}
+
+	public void setDespesas(List<Despesa> despesas) {
+		this.despesas = despesas;
 	}
 
 	@Override

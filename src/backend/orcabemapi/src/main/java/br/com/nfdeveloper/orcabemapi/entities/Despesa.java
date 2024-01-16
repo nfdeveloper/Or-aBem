@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,8 +24,14 @@ public class Despesa implements Serializable{
 	private Long id;
 	private String descricao;
 	private Double valor;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date data_cadastro;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date data_pagamento;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date vencimento;
 	private Boolean pago;
 	

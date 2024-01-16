@@ -1,5 +1,8 @@
 package br.com.nfdeveloper.orcabemapi.services;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +23,8 @@ public class DespesaService {
 	@Autowired
 	private CategoriaRepository catRepo;
 	
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy HH:mm");
+	
 	public Despesa insert(DespesaDTO obj) {
 		Categoria categoria = catRepo.findById(obj.getCategoria_id()).get();
 		Despesa newObj = new Despesa(null, obj.getDescricao(), obj.getValor(), obj.getData_cadastro(), obj.getData_pagamento(), obj.getVencimento(), obj.getPago(),categoria );
@@ -38,4 +43,6 @@ public class DespesaService {
 	public void delete(Long id) {
 		repo.deleteById(id);
 	}
+	
+	
 }
